@@ -1,0 +1,16 @@
+<launch>
+
+    <arg name="pkg_name" value="duckiebot_detection"/>
+    <arg name="veh" doc="Name of vehicle. ex: megaman"/>
+    <arg name="node_name" default="duckiebot_tailing_node"/>
+
+    <group ns="$(arg veh)">
+        <node name="$(arg node_name)" pkg="$(arg pkg_name)" type="$(arg node_name).py" output="screen" required="true">
+            <param name="veh" value="$(arg veh)" />
+        </node>
+    </group>
+
+    <node  name="duckiebot_detection_node" pkg="$(arg pkg_name)" type="duckiebot_detection_node.py" output="screen"></node>
+    <node  name="duckiebot_distance_node" pkg="$(arg pkg_name)" type="duckiebot_distance_node.py" output="screen" ></node>
+
+</launch>
